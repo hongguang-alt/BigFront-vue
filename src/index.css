@@ -1,0 +1,14 @@
+body,html{
+    height: 100%;
+}
+body{
+    background-color: #f2f2f2;
+}
+/* form表单验证错误的样式 */
+.err-msg-code {
+    position: relative;
+    top: -15px;
+  }
+.err-msg {
+    color: red !important;
+}
