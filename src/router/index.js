@@ -9,11 +9,21 @@ const routes = [{
         redirect: "/login"
     }, {
         path: '/login',
+        name: 'login',
         component: Login
     },
     {
         path: '/reg',
-        component: Reg
+        name: 'reg',
+        component: Reg,
+        //路由守卫
+        beforeEnter: function (to, _from, next) {
+            if (_from.name === 'login') {
+                next()
+            } else {
+                next('/login')
+            }
+        }
     }, {
         path: '/findp',
         component: FindP

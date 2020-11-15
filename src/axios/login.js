@@ -16,3 +16,8 @@ export const getForget = (params) => {
 export const getLogin = (params) => {
     return axios.post('/user/login', params)
 }
+
+//注册接口
+export const getRegister = (params) => {
+    return axios.post('/user/register', params)
+}

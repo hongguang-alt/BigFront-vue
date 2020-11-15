@@ -10,7 +10,7 @@
         </li>
       </ul>
       <div class="layui-tab-content">
-        <ValidationObserver v-slot="{ handleSubmit }">
+        <ValidationObserver ref="loginForm" v-slot="{ handleSubmit }">
           <form
             @submit.prevent="handleSubmit(login)"
             class="layui-form layui-form-pane"
@@ -51,7 +51,7 @@
                 </div>
               </ValidationProvider>
             </div>
-            <ValidationProvider v-slot="v" rules="required|length:4">
+            <ValidationProvider v-slot="v" vid="code" rules="required|length:4">
               <div class="layui-form-item">
                 <label class="layui-form-label">验证码</label>
                 <div class="layui-input-inline">
@@ -79,15 +79,21 @@
         </ValidationObserver>
       </div>
     </div>
+    <!-- <Confirm message="this is a message" :isShow="true"></Confirm> -->
   </div>
 </template>
 
 <script>
 import { getSvgLogin, getLogin } from "../axios/login";
 import { v4 as uuidv4 } from "uuid";
+// import Confirm from "../components/modules/confirm/Confirm.vue";
 export default {
   name: "login",
+  components: {
+    // Confirm,
+  },
   mounted() {
+    window.vue = this;
     this.setUid();
     this.getSvg();
   },
@@ -139,8 +145,18 @@ export default {
           sid: this.$store.state.codeUuid,
         });
         if (res.status === 200) {
-          console.log("登陆成功");
+          this.$refs.loginForm.reset();
+          this.username = "";
+          this.password = "";
+          this.$router.push("/home");
+          this.$alert({
+            AType: "success",
+            message: "登陆成功",
+          });
         } else {
+          this.$refs.loginForm.setErrors({
+            code: [res.msg],
+          });
           console.log("登陆失败");
         }
       } catch (e) {
