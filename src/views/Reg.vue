@@ -206,6 +206,10 @@ export default {
           code: this.code,
         });
         if (res.status === 200) {
+          this.$alert({
+            message: "注册成功",
+            AType: "success",
+          });
           this.$router.push("/login");
           this.username = "";
           this.nickname = "";
