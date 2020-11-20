@@ -22,6 +22,7 @@ import './index.css'
 import './axios'
 
 //使用layui
+import './assets/fly/global.css'
 import './assets/css/layui.css'
 import './assets/layui'
 

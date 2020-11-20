@@ -1,12 +1,13 @@
 import VueRouter from 'vue-router'
 
 const Login = () => import( /* webpackChunkName: "my-login" */ '../views/Login.vue')
-const Reg = () => import( /* webpackChunkName: "my-login" */ '../views/Reg.vue')
-const FindP = () => import( /* webpackChunkName: "my-login" */ '../views/FindP.vue')
-
+const Reg = () => import( /* webpackChunkName: "my-reg" */ '../views/Reg.vue')
+const FindP = () => import( /* webpackChunkName: "my-findp" */ '../views/FindP.vue')
+const Home = () => import( /* webpackChunkName: "my-home" */ '../views/Home.vue')
 const routes = [{
-        path: "/",
-        redirect: "/login"
+        path: '/',
+        name: "home",
+        component: Home
     }, {
         path: '/login',
         name: 'login',
