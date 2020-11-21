@@ -4,10 +4,22 @@ const Login = () => import( /* webpackChunkName: "my-login" */ '../views/Login.v
 const Reg = () => import( /* webpackChunkName: "my-reg" */ '../views/Reg.vue')
 const FindP = () => import( /* webpackChunkName: "my-findp" */ '../views/FindP.vue')
 const Home = () => import( /* webpackChunkName: "my-home" */ '../views/Home.vue')
+const Index = () => import( /* webpackChunkName: "home-index" */ '../views/channels/Index.vue')
+const Template1 = () => import( /* webpackChunkName: "home-template1" */ '../views/channels/Template1.vue')
+
 const routes = [{
-        path: '/',
+        path: '/home',
         name: "home",
-        component: Home
+        component: Home,
+        children: [{
+            name: 'index',
+            path: '/',
+            component: Index
+        }, {
+            name: 'template1',
+            path: '/home/:catalog',
+            component: Template1
+        }]
     }, {
         path: '/login',
         name: 'login',
@@ -31,6 +43,7 @@ const routes = [{
     }
 ]
 const router = new VueRouter({
+    linkExactActiveClass: 'layui-this',
     routes // short for `routes: routes`
 })
 export default router

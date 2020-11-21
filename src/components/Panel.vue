@@ -2,26 +2,33 @@
   <div class="fly-panel fly-column">
     <div class="layui-container">
       <ul class="layui-clear">
-        <li class="layui-hide-xs layui-this"><a href="/">首页</a></li>
-        <li><a href="">提问</a></li>
-        <li>
-          <a href="">分享<span class="layui-badge-dot"></span></a>
-        </li>
-        <li><a href="">讨论</a></li>
-        <li><a href="">建议</a></li>
-        <li><a href="">公告</a></li>
-        <li><a href="">动态</a></li>
+        <router-link class="layui-hide-xs" tag="li" to="/home"
+          ><a>首页</a></router-link
+        >
+        <router-link
+          tag="li"
+          :to="item.path"
+          v-for="(item, index) in menuList"
+          :key="'item' + index"
+        >
+          <a
+            >{{ item.name
+            }}<span v-if="item.isNew" class="layui-badge-dot"></span
+          ></a>
+        </router-link>
         <li class="layui-hide-xs layui-hide-sm layui-show-md-inline-block">
           <span class="fly-mid"></span>
         </li>
 
         <!-- 用户登入后显示 -->
-        <li class="layui-hide-xs layui-hide-sm layui-show-md-inline-block">
-          <a href="">我发表的贴</a>
-        </li>
-        <li class="layui-hide-xs layui-hide-sm layui-show-md-inline-block">
-          <a href="">我收藏的贴</a>
-        </li>
+        <template v-if="isLogin">
+          <li class="layui-hide-xs layui-hide-sm layui-show-md-inline-block">
+            <a href="">我发表的贴</a>
+          </li>
+          <li class="layui-hide-xs layui-hide-sm layui-show-md-inline-block">
+            <a href="">我收藏的贴</a>
+          </li>
+        </template>
       </ul>
 
       <div class="fly-column-right layui-hide-xs">
@@ -40,7 +47,44 @@
 
 <script>
 export default {
-    name:'panel'
+  name: "panel",
+  data() {
+    return {
+      menuList: [
+        {
+          name: "提问",
+          isNew: false,
+          path: "/home/ask",
+        },
+        {
+          name: "分享",
+          isNew: true,
+          path: "/home/share",
+        },
+        {
+          name: "讨论",
+          isNew: false,
+          path: "/home/discuss",
+        },
+        {
+          name: "建议",
+          isNew: false,
+          path: "/home/advise",
+        },
+        {
+          name: "公告",
+          isNew: false,
+          path: "/home/notice",
+        },
+        {
+          name: "动态",
+          isNew: false,
+          path: "/home/logs",
+        },
+      ],
+      isLogin: this.$store.state.isLogin,
+    };
+  },
 };
 </script>
 

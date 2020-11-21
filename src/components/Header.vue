@@ -4,7 +4,7 @@
       <div class="layui-row">
         <div class="layui-col-md2 title">hongguang</div>
         <div class="layui-col-md8">交流 案例 框架</div>
-        <div class="layui-col-md2">登陆 注册</div>
+        <div class="layui-col-md2 layui-hide-xs">登陆 注册</div>
       </div>
     </div>
   </div>

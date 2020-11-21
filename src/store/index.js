@@ -5,7 +5,9 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
     state: {
-        codeUuid: 0
+        codeUuid: 0,
+        token: "",
+        isLogin: false
     },
     //唯一改变state
     mutations: {

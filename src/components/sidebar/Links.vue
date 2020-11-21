@@ -1,10 +1,27 @@
 <template>
-  <div>links</div>
+  <div class="fly-panel fly-link">
+    <h3 class="fly-panel-title">友情链接</h3>
+    <dl class="fly-panel-main">
+      <dd v-for="(item, index) in lists" :key="'item' + index">
+        <a :href="item.link" target="_blank">{{ item.title }}</a>
+      </dd>
+      <dd>
+        <a
+          href="mailto:xianxin@layui-inc.com?subject=%E7%94%B3%E8%AF%B7Fly%E7%A4%BE%E5%8C%BA%E5%8F%8B%E9%93%BE"
+          class="fly-link"
+          >申请友链</a
+        >
+      </dd>
+      <dd></dd>
+    </dl>
+  </div>
 </template>
 
 <script>
+import { linkTipMixin } from "../../utils/mixin";
 export default {
   name: "links",
+  mixins: [linkTipMixin],
 };
 </script>
 
