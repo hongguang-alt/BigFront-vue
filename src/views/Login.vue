@@ -145,6 +145,8 @@ export default {
           sid: this.$store.state.codeUuid,
         });
         if (res.status === 200) {
+          this.$store.commit("setLogin", true);
+          this.$store.commit("setUserInfo", res.data);
           this.$refs.loginForm.reset();
           this.username = "";
           this.password = "";

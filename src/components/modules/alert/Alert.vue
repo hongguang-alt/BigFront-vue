@@ -45,7 +45,7 @@ export default {
 };
 </script>
 
-<style scoped lang='scss'>
+<style scoped lang="scss">
 $success: #52c41a !default;
 $warning: #fadb14 !default;
 $danger: #dc3545 !default;
@@ -62,7 +62,7 @@ $danger: #dc3545 !default;
   justify-content: center;
   align-items: center;
   margin: auto;
-  top: 45px;
+  top: 65px;
   left: 0;
   right: 0;
   .alert-message {
