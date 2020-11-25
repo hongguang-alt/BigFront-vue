@@ -17,9 +17,17 @@ const store = new Vuex.Store({
         },
         setLogin(state, value) {
             state.isLogin = value
+            //设置浏览器上的login登陆
+            localStorage.setItem('isLogin', value)
+        },
+        setToken(state, value) {
+            state.token = value
+            localStorage.setItem('token', value)
         },
         setUserInfo(state, value) {
             state.userInfo = value
+            //设置浏览器上缓存的用户信息
+            localStorage.setItem('userInfo', JSON.stringify(value))
         }
     }
 })

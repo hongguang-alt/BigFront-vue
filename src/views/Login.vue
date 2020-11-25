@@ -127,6 +127,7 @@ export default {
     //设置uuid
     setUid() {
       let sid = "";
+      //获取uuid
       let uuid = localStorage.getItem("uuid");
       if (uuid) {
         sid = uuid;
@@ -134,7 +135,7 @@ export default {
         sid = uuidv4();
         localStorage.setItem("uuid", sid);
       }
-      this.$store.commit("setCodeUuid", uuid);
+      this.$store.commit("setCodeUuid", sid);
     },
     async login() {
       try {
@@ -145,6 +146,7 @@ export default {
           sid: this.$store.state.codeUuid,
         });
         if (res.status === 200) {
+          //设置登陆状态
           this.$store.commit("setLogin", true);
           this.$store.commit("setUserInfo", res.data);
           this.$refs.loginForm.reset();

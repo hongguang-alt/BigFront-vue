@@ -6,7 +6,9 @@
       </a>
       <ul class="layui-nav fly-nav layui-hide-xs">
         <li class="layui-nav-item layui-this">
-          <a href="/"><i class="iconfont icon-jiaoliu"></i>交流</a>
+          <router-link to="/home"
+            ><i class="iconfont icon-jiaoliu"></i>交流</router-link
+          >
         </li>
         <li class="layui-nav-item">
           <a href="case/case.html"
@@ -76,28 +78,30 @@
             :class="showChild ? 'layui-show' : ''"
           >
             <dd>
-              <a href="user/set.html"
-                ><i class="layui-icon">&#xe620;</i>基本设置</a
+              <router-link to="/center"
+                ><i class="layui-icon">&#xe620;</i>基本设置</router-link
               >
             </dd>
             <dd>
-              <a href="user/message.html"
+              <router-link to="/center/msg"
                 ><i class="iconfont icon-tongzhi" style="top: 4px;"></i
-                >我的消息</a
+                >我的消息</router-link
               >
             </dd>
             <dd>
-              <a href="user/home.html"
+              <router-link to="/mypage"
                 ><i
                   class="layui-icon"
                   style="margin-left: 2px; font-size: 22px;"
                   >&#xe68e;</i
-                >我的主页</a
+                >我的主页</router-link
               >
             </dd>
             <hr style="margin: 5px 0;" />
-            <dd>
-              <a href="/user/logout/" style="text-align: center;">退出</a>
+            <dd @click="logout">
+              <router-link to="/login" style="text-align: center;"
+                >退出</router-link
+              >
             </dd>
           </dl>
         </li>
@@ -128,6 +132,13 @@ export default {
       this.timer = setTimeout(() => {
         this.showChild = false;
       }, 200);
+    },
+    logout() {
+      //清除记录
+      localStorage.clear();
+      this.$store.commit("setToken", "");
+      this.$store.commit("setUserInfo", "");
+      this.$store.commit("setLogin", false);
     },
   },
   computed: {

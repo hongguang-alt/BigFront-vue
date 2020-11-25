@@ -1,5 +1,7 @@
 <template>
-  <div>other</div>
+  <div class="fly-panel fly-panel-user flex" pad20>
+    功能正在开发中....
+  </div>
 </template>
 
 <script>
@@ -8,4 +10,10 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped lang="scss">
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+</style>

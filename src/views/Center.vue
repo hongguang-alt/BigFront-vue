@@ -7,7 +7,10 @@
         v-for="(item, index) in lists"
         :key="'item' + index"
       >
-        <router-link :to="{ name: item.linkName }">
+        <router-link
+          :to="{ name: item.linkName }"
+          :active-class="item.activeClass"
+        >
           <i class="layui-icon" :class="item.icon"></i>
           {{ item.name }}
         </router-link>
@@ -36,12 +39,16 @@ export default {
         {
           name: "基本设置",
           icon: "layui-icon-set-fill",
-          linkName: "user-setting",
+          // linkName: "user-setting",
+          linkName: "set-form",
+          activeClass: "layui-this",
         },
         {
           name: "我的帖子",
           icon: "layui-icon-list",
-          linkName: "user-posts",
+          // linkName: "user-posts",
+          activeClass: "layui-this",
+          linkName: "post-release",
         },
         {
           name: "我的消息",
