@@ -3,8 +3,8 @@
     <div class="confirm" v-if="isShow">
       <div class="confirm-message">{{ message }}</div>
       <div>
-        <button @click="handleOnok" class="left-btn">取消</button>
-        <button @click="handleOnCancel" class="right-btn">确定</button>
+        <button @click="handleOnCancel" class="left-btn">取消</button>
+        <button @click="handleOnok" class="right-btn">确定</button>
       </div>
     </div>
     <div class="mask" @click="handleOnCancel" v-if="isShow"></div>
@@ -48,7 +48,7 @@ export default {
 };
 </script>
 
-<style scoped lang='scss'>
+<style scoped lang="scss">
 .confirm {
   position: absolute;
   margin: auto;

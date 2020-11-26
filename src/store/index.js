@@ -8,7 +8,10 @@ const store = new Vuex.Store({
         codeUuid: 0,
         token: "",
         isLogin: false,
-        userInfo: {}
+        userInfo: {
+            count: 0,
+            favs: 0
+        }
     },
     //唯一改变state
     mutations: {
@@ -22,6 +25,7 @@ const store = new Vuex.Store({
         },
         setToken(state, value) {
             state.token = value
+            console.log(value)
             localStorage.setItem('token', value)
         },
         setUserInfo(state, value) {

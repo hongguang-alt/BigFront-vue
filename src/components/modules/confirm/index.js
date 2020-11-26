@@ -14,7 +14,7 @@ Confirm.install = (Vue) => {
         onOk,
         onCancel
     }) {
-        instance.message = onOk
+        instance.onOk = onOk
         instance.onCancel = onCancel
         instance.message = message
         instance.isShow = true

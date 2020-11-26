@@ -149,6 +149,7 @@ export default {
           //设置登陆状态
           this.$store.commit("setLogin", true);
           this.$store.commit("setUserInfo", res.data);
+          this.$store.commit("setToken", res.token);
           this.$refs.loginForm.reset();
           this.username = "";
           this.password = "";
