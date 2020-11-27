@@ -15,3 +15,4 @@ export const getLinks = (params) => {
 export const getHot = () => {
     return axios.get('/public/toWeek')
 }
+

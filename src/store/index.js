@@ -25,7 +25,6 @@ const store = new Vuex.Store({
         },
         setToken(state, value) {
             state.token = value
-            console.log(value)
             localStorage.setItem('token', value)
         },
         setUserInfo(state, value) {

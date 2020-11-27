@@ -78,7 +78,7 @@
             :class="showChild ? 'layui-show' : ''"
           >
             <dd>
-              <router-link to="/center"
+              <router-link to="/center/setting"
                 ><i class="layui-icon">&#xe620;</i>基本设置</router-link
               >
             </dd>

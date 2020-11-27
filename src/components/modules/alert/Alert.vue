@@ -52,7 +52,7 @@ $danger: #dc3545 !default;
 
 .alert {
   position: absolute;
-  z-index: 999;
+  z-index: 119990;
   width: 500px;
   height: 40px;
   color: white;

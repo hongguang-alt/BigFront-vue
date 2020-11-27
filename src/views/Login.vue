@@ -93,7 +93,6 @@ export default {
     // Confirm,
   },
   mounted() {
-    window.vue = this;
     this.setUid();
     this.getSvg();
   },

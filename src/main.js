@@ -5,6 +5,7 @@ import VueRouter from 'vue-router'
 import store from './store'
 import alert from './components/modules/alert'
 import confirm from './components/modules/confirm'
+import pop from './components/modules/pop'
 
 //表单验证的组件
 import {
@@ -26,6 +27,7 @@ import './assets/fly/global.css'
 
 Vue.use(alert)
 Vue.use(confirm)
+Vue.use(pop)
 
 Vue.use(VueRouter)
 Vue.config.productionTip = false

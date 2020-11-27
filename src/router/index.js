@@ -20,6 +20,10 @@ const setPas = () => import( /* webpackChunkName: "set-setpas" */ '../components
 const setAccount = () => import( /* webpackChunkName: "set-account" */ '../components/user/set/AccountBind.vue')
 const postCollect = () => import( /* webpackChunkName: "post-collect" */ '../components/user/posts/Collection.vue')
 const postRelease = () => import( /* webpackChunkName: "post-collect" */ '../components/user/posts/Release.vue')
+const NotFound = () => import( /* webpackChunkName: "notfound" */ '../views/NotFound.vue')
+const Email = () => import( /* webpackChunkName: "email" */ '../views/Email.vue')
+const ResetP = () => import( /* webpackChunkName: "email" */ '../views/ResetP.vue')
+
 
 const routes = [{
         path: '/home',
@@ -113,7 +117,22 @@ const routes = [{
             name: 'user-other',
             path: '/center/other',
             component: Other
-        }]
+        }, ]
+    }, {
+        name: 'email',
+        path: '/email',
+        component: Email
+    }, {
+        name: 'reset',
+        path: '/reset',
+        component: ResetP
+    }, {
+        name: '404',
+        path: '/404',
+        component: NotFound
+    }, {
+        path: '*',
+        redirect: '/404'
     }
 ]
 const router = new VueRouter({

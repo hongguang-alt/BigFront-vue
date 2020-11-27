@@ -13,7 +13,11 @@
         <form class="layui-form layui-form-pane" action="">
           <div class="layui-form-item">
             <label class="layui-form-label">邮箱</label>
-            <ValidationProvider v-slot="v" rules="required|email">
+            <ValidationProvider
+              ref="findPForm"
+              v-slot="v"
+              rules="required|email|checkUsername"
+            >
               <div class="layui-input-inline">
                 <input
                   name="email"
@@ -62,7 +66,19 @@
 </template>
 
 <script>
+import { extend } from "vee-validate";
 import { getSvgLogin, getForget } from "../axios/login";
+import { getUsername } from "../axios/public";
+
+extend("checkUsername", {
+  validate: async function(value) {
+    let { data, status } = await getUsername({ username: value });
+    if (status === 200 && typeof data == "boolean") {
+      return data;
+    }
+  },
+  message: "用户名不存在",
+});
 export default {
   name: "findp",
   mounted() {
@@ -101,7 +117,14 @@ export default {
           code: this.code,
         });
         if (res.status == 200) {
-          console.log("发送邮件成功");
+          this.$confirm({
+            message: "邮箱已发送，请前往邮箱重置",
+            onOk: () => {},
+            onCancel: () => {},
+          });
+          this.username = "";
+          this.code = "";
+          this.$refs.regForm.reset();
         } else {
           console.log(res.msg);
         }

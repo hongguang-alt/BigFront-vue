@@ -60,7 +60,6 @@ export default {
     },
     $route() {
       let catalog = this.$route.params.catalog;
-      console.log(catalog);
       if (typeof catalog !== "undefined") {
         this.catalog = catalog;
       }

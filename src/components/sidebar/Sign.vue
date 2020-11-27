@@ -125,8 +125,6 @@ export default {
         return this.$confirm({
           message: "请先登录",
           onOk: () => {
-            console.log(111);
-            console.log(this.$router);
             this.$router.push("/login");
           },
           onCancel: () => {},
