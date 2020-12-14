@@ -20,7 +20,6 @@
         >
           开始上传
         </button>
-
         <span class="loading"> </span>
       </div>
     </div>
@@ -73,7 +72,7 @@ export default {
           this.file = "";
           let userInfo = this.$store.state.userInfo;
           userInfo.pic = res.data.pic;
-          this.$stroe.commit("setUserInfo", userInfo);
+          this.$store.commit("setUserInfo", userInfo);
         } else {
           console.log(res.msg);
         }

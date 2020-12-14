@@ -124,7 +124,9 @@ export default {
           });
           this.username = "";
           this.code = "";
-          this.$refs.regForm.reset();
+          requestAnimationFrame(() => {
+            this.$refs.regForm.reset();
+          });
         } else {
           console.log(res.msg);
         }

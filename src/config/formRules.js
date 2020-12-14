@@ -24,7 +24,8 @@ localize('zh_CN', {
     email: "邮箱",
     code: '验证码',
     nickname: "昵称",
-    checkpassword: '确认密码'
+    checkpassword: '确认密码',
+    oldpassword: '旧密码'
   },
   fields: {
     username: {
@@ -37,6 +38,9 @@ localize('zh_CN', {
     },
     checkpassword: {
       confirmed: '{_field_}不同',
+      minmax: '{_field_} 必须在长度为{min}到{max}字符之间'
+    },
+    oldpassword: {
       minmax: '{_field_} 必须在长度为{min}到{max}字符之间'
     }
   }

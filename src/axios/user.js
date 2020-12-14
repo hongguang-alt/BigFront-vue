@@ -23,3 +23,8 @@ export const changePassword = (params) => {
 export const uploadImg = (formdata) => {
     return axios.post('/user/uploadImg', formdata)
 }
+
+//修改密码的接口
+export const updatePassword = (params) => {
+    return axios.post('/user/updatePassword', params)
+}
