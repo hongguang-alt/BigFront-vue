@@ -24,6 +24,7 @@ import './axios'
 
 //使用layui
 import './assets/fly/global.css'
+import './assets/layui-layer/layer.css'
 
 Vue.use(alert)
 Vue.use(confirm)

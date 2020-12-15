@@ -22,7 +22,8 @@ const postCollect = () => import( /* webpackChunkName: "post-collect" */ '../com
 const postRelease = () => import( /* webpackChunkName: "post-collect" */ '../components/user/posts/Release.vue')
 const NotFound = () => import( /* webpackChunkName: "notfound" */ '../views/NotFound.vue')
 const Email = () => import( /* webpackChunkName: "email" */ '../views/Email.vue')
-const ResetP = () => import( /* webpackChunkName: "email" */ '../views/ResetP.vue')
+const ResetP = () => import( /* webpackChunkName: "resetp" */ '../views/ResetP.vue')
+const Add = () => import( /* webpackChunkName: "add" */ '../views/Add.vue')
 
 
 const routes = [{
@@ -126,7 +127,13 @@ const routes = [{
         name: 'reset',
         path: '/reset',
         component: ResetP
-    }, {
+    },
+    {
+        name: 'add',
+        path: '/add',
+        component: Add
+    },
+    {
         name: '404',
         path: '/404',
         component: NotFound
