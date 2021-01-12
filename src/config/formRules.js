@@ -25,7 +25,9 @@ localize('zh_CN', {
     code: '验证码',
     nickname: "昵称",
     checkpassword: '确认密码',
-    oldpassword: '旧密码'
+    oldpassword: '旧密码',
+    title: "标题",
+    catalog: "分类"
   },
   fields: {
     username: {
@@ -42,6 +44,9 @@ localize('zh_CN', {
     },
     oldpassword: {
       minmax: '{_field_} 必须在长度为{min}到{max}字符之间'
+    },
+    catalog: {
+      is_not: "请选择分类"
     }
   }
 });
@@ -65,3 +70,9 @@ extend('minmax', {
   params: ['min', 'max'],
   // message: "{_field_} 必须在长度为{min}到{max}字符之间"
 });
+
+extend("is_not", {
+  validate(value) {
+    return value != '请选择';
+  },
+})

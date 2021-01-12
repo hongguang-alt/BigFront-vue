@@ -28,3 +28,6 @@ export const uploadImg = (formdata) => {
 export const updatePassword = (params) => {
     return axios.post('/user/updatePassword', params)
 }
+
+//发帖接口
+export const sendPost = (params) => axios.post('/user/sendPost', params)

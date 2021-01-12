@@ -63,7 +63,7 @@
       />
       <preview
         :isShow="current === 5"
-        content="<h1>hello word</h1>"
+        :content="content"
         @closeEvent="closeModal()"
       />
     </div>
@@ -87,6 +87,9 @@ export default {
     Preview,
   },
   name: "edit",
+  updated() {
+    this.$emit("updateContent", this.content);
+  },
   data() {
     return {
       content: "",
@@ -184,7 +187,6 @@ export default {
       }
       if (!icons.contains(e.target)) {
         if (!dom.contains(e.target)) {
-          console.log(dom.contains(e.target));
           this.closeModal();
         }
       }

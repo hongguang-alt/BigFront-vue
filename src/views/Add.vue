@@ -15,52 +15,65 @@
               <ValidationObserver ref="addpostform" v-slot="{ handleSubmit }">
                 <form @submit.prevent="handleSubmit(add)">
                   <div class="layui-row layui-col-space15 layui-form-item">
-                    <div class="layui-col-md3">
-                      <label class="layui-form-label">所在专栏</label>
-                      <div class="layui-input-block" @click="changeSelect()">
-                        <div
-                          class="layui-unselect layui-form-select"
-                          :class="{ 'layui-form-selected': isSelect }"
-                        >
-                          <div class="layui-select-title">
-                            <input
-                              type="text"
-                              placeholder="请选择"
-                              readonly
-                              v-model="catalogs[cataIndex].text"
-                              class="layui-input layui-unselect"
-                            />
-                            <i class="layui-edge"></i>
+                    <ValidationProvider v-slot="v" rules="is_not:请选择">
+                      <div class="layui-col-md3">
+                        <label class="layui-form-label">专栏</label>
+                        <div class="layui-input-block" @click="changeSelect()">
+                          <div
+                            class="layui-unselect layui-form-select"
+                            :class="{ 'layui-form-selected': isSelect }"
+                          >
+                            <div class="layui-select-title">
+                              <input
+                                type="text"
+                                placeholder="请选择"
+                                readonly
+                                name="catalog"
+                                v-model="catalogs[cataIndex].text"
+                                class="layui-input layui-unselect"
+                              />
+                              <i class="layui-edge"></i>
+                            </div>
+                            <dl class="layui-anim layui-anim-upbit">
+                              <dd
+                                v-for="(item, index) in catalogs"
+                                :key="'catalog' + index"
+                                @click="chooseCatalog(item, index)"
+                                :class="{ 'layui-this': index === cataIndex }"
+                              >
+                                {{ item.text }}
+                              </dd>
+                            </dl>
                           </div>
-                          <dl class="layui-anim layui-anim-upbit">
-                            <dd
-                              v-for="(item, index) in catalogs"
-                              :key="'catalog' + index"
-                              @click="chooseCatalog(item, index)"
-                              :class="{ 'layui-this': index === cataIndex }"
-                            >
-                              {{ item.text }}
-                            </dd>
-                          </dl>
                         </div>
+                        <span v-if="v.errors[0]" class="err-msg">
+                          {{ v.errors[0] }}
+                        </span>
                       </div>
-                    </div>
-                    <div class="layui-col-md9">
-                      <label for="L_title" class="layui-form-label">标题</label>
-                      <div class="layui-input-block">
-                        <input
-                          type="text"
-                          id="L_browser"
-                          name="browser"
-                          placeholder="文章标题"
-                          v-model="title"
-                          autocomplete="off"
-                          class="layui-input"
-                        />
+                    </ValidationProvider>
+                    <ValidationProvider v-slot="v" vid="title" rules="required">
+                      <div class="layui-col-md8">
+                        <label for="L_title" class="layui-form-label"
+                          >标题</label
+                        >
+                        <div class="layui-input-block">
+                          <input
+                            type="text"
+                            id="L_browser"
+                            name="title"
+                            placeholder="文章标题"
+                            v-model="title"
+                            autocomplete="off"
+                            class="layui-input"
+                          />
+                        </div>
+                        <span v-if="v.errors[0]" class="err-msg">
+                          {{ v.errors[0] }}
+                        </span>
                       </div>
-                    </div>
+                    </ValidationProvider>
                   </div>
-                  <editor></editor>
+                  <editor @updateContent="setContent"></editor>
                   <div class="layui-form-item">
                     <div class="layui-inline">
                       <label class="layui-form-label">悬赏飞吻</label>
@@ -139,6 +152,7 @@
 <script>
 import { SvgMinxin } from "../utils/svgMinxin";
 import Editor from "../components/modules/editor";
+import { sendPost } from "../axios/user";
 export default {
   components: {
     Editor,
@@ -174,6 +188,8 @@ export default {
       ],
       favList: [20, 30, 50, 60, 80],
       title: "",
+      content: "",
+      code: "",
     };
   },
   methods: {
@@ -189,7 +205,52 @@ export default {
     chooseFav(item, index) {
       this.favIndex = index;
     },
-    add() {},
+    clear() {
+      this.content = "";
+      this.title = "";
+      this.favIndex = 0;
+      this.cataIndex = 0;
+    },
+    //发布帖子
+    async add() {
+      if (this.content === "" || this.content.trim() === "") {
+        return this.$pop({
+          message: "请输入内容",
+          type: "shake",
+        });
+      }
+      let options = {
+        catalog: this.catalogs[this.cataIndex].value,
+        title: this.title,
+        content: this.content,
+        fav: this.favList[this.favIndex],
+        sid: this.$store.state.codeUuid,
+        code: this.code,
+      };
+      try {
+        let res = await sendPost(options);
+        if (res.status == 200) {
+          this.$alert({
+            AType: "success",
+            message: "上传成功",
+          });
+          setTimeout(() => {
+            this.clear();
+            this.$router.push("/home");
+          }, 200);
+        } else {
+          this.$refs.addpostform.setErrors({
+            code: [res.msg],
+          });
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    },
+    //设置内容
+    setContent(content) {
+      this.content = content;
+    },
   },
 };
 </script>

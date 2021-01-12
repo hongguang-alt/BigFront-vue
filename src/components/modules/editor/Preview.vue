@@ -6,7 +6,7 @@
       id="preview"
     >
       <div class="layui-layer-title">预览</div>
-      <div class="layui-layer-content" v-html="content"></div>
+      <div class="layui-layer-content" v-html="resultContent"></div>
       <span class="layui-layer-setwin" @click="cancel()">
         <a
           class="layui-layer-ico layui-layer-close layui-layer-close1"
@@ -18,9 +18,15 @@
 </template>
 
 <script>
+import { transHTML } from "../../../utils";
 export default {
   props: ["isShow", "content"],
   name: "preview",
+  computed: {
+    resultContent: function() {
+      return transHTML(this.content);
+    },
+  },
   methods: {
     cancel() {
       this.$emit("closeEvent");
