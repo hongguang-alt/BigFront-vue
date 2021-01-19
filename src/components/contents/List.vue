@@ -68,7 +68,7 @@ export default {
   },
   data() {
     return {
-      type: '0',
+      type: "0",
       isRepeat: false,
       isEnd: false,
       //是否完结
@@ -79,33 +79,7 @@ export default {
       page: 0,
       limit: 20,
       catalog: "",
-      lists: [
-        {
-          uid: {
-            name: "红光",
-            isVip: "1",
-          },
-          title: "大前端课程",
-          content: "这是大前端课程",
-          catalog: "ask",
-          created: "2020-11-19 20:00:00",
-          fav: 40,
-          isEnd: 0,
-          reads: 10,
-          answer: 0,
-          isTop: 0,
-          tags: [
-            {
-              name: "精华",
-              class: "layui-bg-red",
-            },
-            {
-              name: "热门",
-              class: "layui-bg-blue",
-            },
-          ],
-        },
-      ],
+      lists: [],
     };
   },
   methods: {
@@ -197,5 +171,4 @@ export default {
 };
 </script>
 
-<style lang='scss' scoped>
-</style>
+<style lang="scss" scoped></style>

@@ -4,7 +4,7 @@
     <div v-if="lists && lists.length > 0">
       <dd v-for="(item, index) in lists" :key="'item' + index">
         <a href="jie/detail.html">{{ item.title }}</a>
-        <span><i class="iconfont icon-pinglun1"></i> {{ item.count }}</span>
+        <span><i class="iconfont icon-pinglun1"></i> {{ item.answer }}</span>
       </dd>
     </div>
     <!-- 无数据时 -->
@@ -41,5 +41,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

@@ -14,7 +14,7 @@
         </h2>
         <div class="fly-list-info">
           <a href="user/home.html" link>
-            <cite>{{ item.uid.name }}</cite>
+            <cite>{{ item.uid.nickname }}</cite>
             <!-- <i class="iconfont icon-renzheng" title="认证信息：XXX"></i>-->
             <i
               class="layui-badge fly-badge-vip"
@@ -29,7 +29,7 @@
           >
           <span
             class="layui-badge fly-badge-accept layui-hide-xs"
-            v-show="item.status !== 0"
+            v-show="item.status !== '0'"
             >已结</span
           >
           <span class="fly-list-nums">
@@ -124,7 +124,7 @@ export default {
 };
 </script>
 
-<style scoped lang='scss'>
+<style scoped lang="scss">
 .gray {
   color: #999;
 }
